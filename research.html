@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Skyora</title>
+<meta name="description" content="The research behind Skyora: methodology, benchmarks, limitations, and future work for a mathematics-based astrophotography image enhancement method.">
+<link rel="icon" href="assets/icons/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="mark">SKYORA</span>
+      <span class="descriptor">Astrophotography · Image Processing</span>
+    </a>
+    <div class="nav-links nav-links-desktop">
+      <a href="index.html#overview">Overview</a>
+      <a href="moon-fixer.html">Moon Fixer</a>
+      <a href="research.html" class="active">Research</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-outline nav-links-desktop" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Paper ↗</a>
+      <button class="nav-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html#overview">Overview</a>
+  <a href="moon-fixer.html">Moon Fixer</a>
+  <a href="research.html">Research</a>
+  <a class="btn btn-primary" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Paper ↗</a>
+</div>
+
+<main>
+
+  <header class="page-hero">
+    <div class="container">
+      <span class="eyebrow reveal">Independent Research</span>
+      <h1 class="reveal">The research behind Skyora.</h1>
+      <p class="sub reveal">A mathematics-based astrophotography image enhancement method for low-end devices and embedded camera systems.</p>
+      <div class="hero-actions reveal" style="margin-top: var(--space-4);">
+        <span class="small-caps">Hiruja Edurapola — Independent Researcher · Developer</span>
+      </div>
+      <div class="hero-actions reveal" style="margin-top: var(--space-3);">
+        <a class="btn btn-primary" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Full Paper ↗</a>
+        <span class="mono small-caps">DOI 10.5281/zenodo.18063740 · Published on Zenodo</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABSTRACT -->
+  <section class="section-pad">
+    <div class="container">
+      <span class="eyebrow reveal">Abstract</span>
+      <div class="abstract-block reveal">
+        <p class="abstract-open">Image enhancement does not always require machine learning.</p>
+        <p>Skyora presents a deterministic, mathematics-based approach to astrophotography enhancement, targeted specifically at low-end devices and embedded camera systems where cloud connectivity and large model inference are impractical or unavailable.</p>
+        <p>The method combines astronomical ephemeris computation with classical computer-vision techniques — grayscale thresholding, morphological operations, contour scoring, and template-based compositing — to detect the lunar disc, determine its phase, and enhance the captured image without relying on a trained neural network.</p>
+        <p>The resulting pipeline runs fully offline and is designed to be computationally lightweight relative to comparable machine-learning-based approaches, while remaining transparent and reproducible in its calculations.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- METHODOLOGY -->
+  <section class="section-pad" id="methodology">
+    <div class="container">
+      <span class="eyebrow reveal">Methodology</span>
+      <h2 class="section-title reveal">How the pipeline is constructed.</h2>
+      <p class="lede reveal">Expand each module for the techniques used at that stage.</p>
+
+      <div class="accordion reveal">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Astronomical Ephemeris Computation
+            <span class="plus"></span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Derives lunar parameters for the exact moment and location of capture, used to select and orient the correct phase template.</p>
+              <ul>
+                <li>Datetime of capture</li>
+                <li>Geographic coordinates</li>
+                <li>Lunar illumination</li>
+                <li>Lunar age</li>
+                <li>Altitude</li>
+                <li>Azimuth</li>
+                <li>Computed via PyEphem</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Moon Detection
+            <span class="plus"></span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Locates the lunar disc within the captured frame using classical computer-vision operations.</p>
+              <ul>
+                <li>Grayscale conversion</li>
+                <li>Gaussian blur</li>
+                <li>Thresholding</li>
+                <li>Morphological operations</li>
+                <li>Contour extraction</li>
+                <li>Contour scoring</li>
+                <li>Enclosing circle fitting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Lunar Phase Template Selection
+            <span class="plus"></span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Illumination and lunar age computed in the ephemeris stage determine which reference template most closely matches the Moon's current phase, so the composited result is astronomically consistent with the time and location of capture.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Natural Blending
+            <span class="plus"></span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Adapts and integrates the selected template into the original scene so the result reads as a coherent photograph rather than a composite.</p>
+              <ul>
+                <li>Template scaling</li>
+                <li>Orientation matching</li>
+                <li>Alpha masking</li>
+                <li>Edge feathering</li>
+                <li>Color adaptation</li>
+                <li>Poisson blending</li>
+                <li>Alpha compositing fallback</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Post Processing
+            <span class="plus"></span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Final denoising pass applied to the composited output.</p>
+              <ul>
+                <li>Bilateral filtering</li>
+                <li>Gaussian smoothing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- BENCHMARKS -->
+  <section class="section-pad" id="benchmarks">
+    <div class="container">
+      <span class="eyebrow reveal">Benchmarks</span>
+      <h2 class="section-title reveal">Observed benchmark results.</h2>
+      <p class="lede reveal">Reported / observed results from the paper's test conditions. These are not universal performance guarantees.</p>
+
+      <div class="benchmark-block reveal">
+        <div class="benchmark-title">Moon detection — accuracy</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="name">Skyora</span>
+            <div class="bar-track"><div class="bar-fill" data-value="90"></div></div>
+            <span class="val mono">90%</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">Nano Banana Pro</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="99"></div></div>
+            <span class="val mono">99%</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">LLaVA 7B</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="60"></div></div>
+            <span class="val mono">60%</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">Teachable Machine</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="60"></div></div>
+            <span class="val mono">60%</span>
+          </div>
+        </div>
+
+        <div class="benchmark-title">Moon detection — time</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="name">Skyora</span>
+            <div class="bar-track"><div class="bar-fill" data-value="1"></div></div>
+            <span class="val mono">0.2s</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">Nano Banana Pro</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="3"></div></div>
+            <span class="val mono">5s</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">LLaVA 7B</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="100"></div></div>
+            <span class="val mono">150s</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">Teachable Machine</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="0.5"></div></div>
+            <span class="val mono">0.75s</span>
+          </div>
+        </div>
+        <p class="benchmark-note mono">Time bars are scaled for relative visual comparison, not a shared linear axis — see the paper for exact values.</p>
+      </div>
+
+      <div class="benchmark-block reveal">
+        <div class="benchmark-title">Enhancement / calculation accuracy</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <span class="name">Skyora</span>
+            <div class="bar-track"><div class="bar-fill" data-value="100"></div></div>
+            <span class="val mono">100%</span>
+          </div>
+          <div class="bar-row">
+            <span class="name">Gemini Pro</span>
+            <div class="bar-track"><div class="bar-fill dim" data-value="40"></div></div>
+            <span class="val mono">40%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="benchmark-block reveal">
+        <div class="benchmark-title">Resource usage</div>
+        <p class="lede" style="margin-bottom: 0;">The paper reports comparisons involving CPU, RAM and VRAM usage between Skyora and the machine-learning-based alternatives above. See the full paper for detailed figures and test conditions.</p>
+      </div>
+
+      <div class="accordion reveal" style="margin-top: var(--space-3);">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Benchmark methodology &amp; limitations
+            <span class="plus"></span>
+          </button>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Scientific comparisons are only meaningful when the test conditions, hardware, dataset, metrics, and procedure are clearly defined. These figures are reported as observed under the conditions described in the published paper. Refer to the full paper for complete methodology, hardware specification, and dataset details before drawing conclusions from these numbers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- LIMITATIONS -->
+  <section class="section-pad" id="limitations">
+    <div class="container">
+      <span class="eyebrow reveal">Transparency</span>
+      <h2 class="section-title reveal">Where Skyora still struggles.</h2>
+      <div class="list-block reveal">
+        <div class="list-row">
+          <span class="marker">→</span>
+          <p>Overlapping objects such as branches can interfere with lunar placement.</p>
+        </div>
+        <div class="list-row">
+          <span class="marker">→</span>
+          <p>Dense or unusual cloud conditions may produce edge cases in detection.</p>
+        </div>
+        <div class="list-row">
+          <span class="marker">→</span>
+          <p>Incorrect timestamp or location metadata affects astronomical calculations.</p>
+        </div>
+        <div class="list-row">
+          <span class="marker">→</span>
+          <p>Manual metadata entry can mitigate missing capture data.</p>
+        </div>
+        <div class="list-row">
+          <span class="marker">→</span>
+          <p>The system is intended for amateur / low-cost astrophotography rather than professional scientific imaging.</p>
+        </div>
+        <div class="list-row">
+          <span class="marker">→</span>
+          <p>Template-based lunar enhancement is an image-processing / compositing technique, rather than physical recovery of information the sensor never captured.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE WORK -->
+  <section class="section-pad" id="future">
+    <div class="container">
+      <span class="eyebrow reveal">Roadmap</span>
+      <h2 class="section-title reveal">Where it goes next.</h2>
+      <p class="lede reveal">Possible future directions. None of the following are implemented yet.</p>
+      <div class="roadmap-grid">
+        <div class="roadmap-item reveal"><p>Improved handling of overlapping objects</p></div>
+        <div class="roadmap-item reveal"><p>Adaptive blending</p></div>
+        <div class="roadmap-item reveal"><p>Broader celestial-object support</p></div>
+        <div class="roadmap-item reveal"><p>Planetary enhancement</p></div>
+        <div class="roadmap-item reveal"><p>Star-cluster processing</p></div>
+        <div class="roadmap-item reveal"><p>Optional real-time camera processing</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- CREDITS & CITATIONS -->
+  <section class="section-pad" id="citations">
+    <div class="container">
+      <span class="eyebrow reveal">Credits &amp; Citations</span>
+      <h2 class="section-title reveal">Sources behind the method.</h2>
+      <p class="lede reveal">The references used across Skyora's research, implementation, and visual materials.</p>
+      <ol class="citation-list reveal">
+        <li>Bradski, G., &amp; Kaehler, A. (2008). <em>Learning OpenCV: Computer Vision with the OpenCV Library</em>. O'Reilly Media.</li>
+        <li>Harris, C.R., et al. (2020). <em>Array programming with NumPy</em>. Nature 585, 357–362.</li>
+        <li>Clark, A., et al. (2022). <em>Pillow (PIL Fork) Documentation</em>. Python Imaging Library.</li>
+        <li>Exifying Authors. (2025). <em>ExifRead — Read EXIF metadata from images in Python</em>.</li>
+        <li>Rhodes, B. (2025). <em>PyEphem: Scientific Astronomy Library for Python</em>. Available at: <a href="https://rhodesmill.org/pyephem/" target="_blank" rel="noopener">rhodesmill.org/pyephem</a>.</li>
+        <li>Hunter, J.D. (2007). <em>Matplotlib: A 2D graphics environment</em>. Computing in Science &amp; Engineering.</li>
+        <li>Duda, R.O. &amp; Hart, P.E. (1972). <em>Use of the Hough Transformation to Detect Lines and Curves in Pictures</em>. Communications of the ACM.</li>
+        <li>NASA Goddard Space Flight Center. (2025). <em>Moon Phase and Libration Visualization</em>. Public domain images and data provided by NASA.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- PAPER CARD -->
+  <section class="section-pad" id="paper">
+    <div class="container">
+      <div class="paper-card reveal">
+        <span class="eyebrow plain small-caps">Published Research</span>
+        <h3>A Mathematics-Based Astrophotography Image Enhancement Method for Low-End Devices and Embedded Camera Systems</h3>
+        <div class="paper-meta">
+          <span><strong>Hiruja Edurapola</strong></span>
+          <span>Zenodo</span>
+        </div>
+        <div class="paper-doi mono">DOI 10.5281/zenodo.18063740</div>
+        <div class="paper-actions">
+          <a class="btn btn-primary" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Full Paper ↗</a>
+          <a class="btn btn-outline" href="https://doi.org/10.5281/zenodo.18063740" target="_blank" rel="noopener">View DOI ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="mark">SKYORA</div>
+        <p>A mathematics-based astrophotography image enhancement project.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Site</h5>
+          <a href="research.html">Research</a>
+          <a href="moon-fixer.html">Moon Fixer</a>
+          <a href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Paper</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="credit">Research &amp; Development by <strong><a href="https://hirujaedurapola.com" rel="noopener" target="_blank">Hiruja Edurapola</a></strong> — <a href="https://hirujastudios.netlify.app" target="_blank" rel="noopener">Hiruja Studios</a> · SJ Research Labs</div>
+      <div>© <span data-year>2026</span> Hiruja Edurapola</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

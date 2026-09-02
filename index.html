@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyora — Mathematics-Based Astrophotography Image Enhancement</title>
+<meta name="description" content="Skyora is a mathematics-based astrophotography image-processing system for low-end devices and embedded camera systems, developed by Hiruja Edurapola.">
+<link rel="icon" href="assets/icons/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="mark">SKYORA</span>
+      <span class="descriptor">Astrophotography · Image Processing</span>
+    </a>
+    <div class="nav-links nav-links-desktop">
+      <a href="index.html#overview">Overview</a>
+      <a href="moon-fixer.html">Moon Fixer</a>
+      <a href="research.html">Research</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-outline nav-links-desktop" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Paper ↗</a>
+      <button class="nav-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html#overview">Overview</a>
+  <a href="moon-fixer.html">Moon Fixer</a>
+  <a href="research.html">Research</a>
+  <a class="btn btn-primary" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Paper ↗</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <header class="hero" id="overview">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="status-tag"><span class="dot"></span> Research Project · Offline Processing</span>
+        <h1>See more in the night sky.</h1>
+        <p class="sub">Skyora is a mathematics-based astrophotography image-processing system designed to enhance lunar imagery on low-end devices and embedded camera systems — without artificial intelligence or cloud processing.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Research ↗</a>
+          <a class="link-arrow" href="#introduction">Explore the Method <span class="arrow">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/images/hero-moon.jpg" alt="Enhanced lunar image produced by the Skyora processing pipeline">
+        <div class="hero-annotations">
+          <span class="tag">LUNAR IMAGE PROCESSING</span>
+          <span class="tag">OFFLINE</span>
+          <span class="tag">DETERMINISTIC</span>
+          <span class="tag">LOW-COMPUTATION</span>
+          <span class="crosshair"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRODUCTION -->
+  <section class="section-pad" id="introduction">
+    <div class="container intro-grid">
+      <div class="reveal">
+        <p class="statement">Computational imaging for <span class="accent">imperfect cameras.</span></p>
+      </div>
+      <div class="intro-side reveal">
+        <p class="highlight">Useful astrophotography enhancement does not always require a large model or powerful machine.</p>
+        <p>Astrophotography quality is usually bound by optics, sensor quality, exposure, stability, and processing power — resources most amateur and embedded systems don't have in abundance.</p>
+        <p>Skyora approaches the problem differently, using deterministic mathematical and classical image-processing techniques instead of machine-learning inference.</p>
+        <div class="tick-tags">
+          <span>NO CLOUD</span>
+          <span>NO ML MODEL</span>
+          <span>LOW COMPUTATIONAL COST</span>
+          <span>DETERMINISTIC PIPELINE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- THREE CORE CAPABILITIES -->
+  <section class="section-pad">
+    <div class="container">
+      <span class="eyebrow reveal">Capabilities</span>
+      <h2 class="section-title reveal">Three deterministic capabilities.</h2>
+      <div class="capability-grid reveal">
+        <div class="capability-card">
+          <span class="idx mono">01</span>
+          <h3>Denoising &amp; Enhancement</h3>
+          <p>Skyora applies lightweight image-processing operations to suppress noise while preserving useful structure and edges.</p>
+          <ul>
+            <li>Bilateral filtering</li>
+            <li>Gaussian smoothing</li>
+            <li>Contrast / pixel transformations</li>
+            <li>Classical image-processing techniques</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <span class="idx mono">02</span>
+          <h3>Moon Fixer</h3>
+          <p>Detects the lunar disc, calculates lunar parameters, selects a phase-appropriate template, adapts it, and integrates it into the captured scene — an image enhancement and compositing technique, not a restoration of lost detail.</p>
+          <ul>
+            <li>Lunar disc detection</li>
+            <li>Phase-matched templating</li>
+            <li>Scene-aware compositing</li>
+          </ul>
+        </div>
+        <div class="capability-card">
+          <span class="idx mono">03</span>
+          <h3>Astronomy Image Processing</h3>
+          <p>Combines astronomical calculations with conventional computer vision to process lunar astrophotography in a fully offline workflow.</p>
+          <ul>
+            <li>Lunar ephemeris computation</li>
+            <li>Conventional computer vision</li>
+            <li>Fully offline execution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="section-pad" id="showcase">
+    <div class="container">
+      <span class="eyebrow reveal">Result</span>
+      <h2 class="section-title reveal">From indistinct to detailed.</h2>
+      <p class="lede reveal">A real Skyora processing example. Drag the divider to compare the original capture against the Skyora-enhanced output.</p>
+      <div class="compare-wrap reveal">
+        <div class="compare">
+          <img class="after-layer" src="assets/images/moon-after.jpg" alt="Skyora-enhanced lunar image">
+          <img class="before-layer" src="assets/images/moon-before.jpg" alt="Original unprocessed lunar capture">
+          <span class="tag tag-left">ORIGINAL CAPTURE</span>
+          <span class="tag tag-right">SKYORA</span>
+          <div class="divider-line"></div>
+          <div class="handle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+          </div>
+        </div>
+        <p class="compare-caption mono">Processing applied: lunar disc detection → phase-matched template adaptation → alpha-composited blending → bilateral denoising.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES GRID -->
+  <section class="section-pad">
+    <div class="container">
+      <span class="eyebrow reveal">Examples</span>
+      <h2 class="section-title reveal">Real conditions, processed offline.</h2>
+      <div class="examples-grid">
+        <div class="example-item reveal">
+          <img src="assets/images/moon-noisy.jpg" loading="lazy" alt="Noisy low-exposure lunar capture example">
+          <div class="example-caption">
+            <span class="l1">LOW EXPOSURE</span>
+            <span class="l2">Noisy lunar capture</span>
+          </div>
+        </div>
+        <div class="example-item reveal">
+          <img src="assets/images/moon-clouds.jpg" loading="lazy" alt="Cloud interference lunar enhancement example">
+          <div class="example-caption">
+            <span class="l1">CLOUD INTERFERENCE</span>
+            <span class="l2">Lunar enhancement</span>
+          </div>
+        </div>
+        <div class="example-item reveal">
+          <img src="assets/images/moon-blur.jpg" loading="lazy" alt="Blurred capture processed with Moon Fixer">
+          <div class="example-caption">
+            <span class="l1">BLUR</span>
+            <span class="l2">Moon Fixer</span>
+          </div>
+        </div>
+        <div class="example-item reveal">
+          <img src="assets/images/moon-red.jpg" loading="lazy" alt="Red moon color-adjusted example">
+          <div class="example-caption">
+            <span class="l1">COLOR SHIFT</span>
+            <span class="l2">Tonal correction</span>
+          </div>
+        </div>
+        <div class="example-item reveal">
+          <img src="assets/images/moon-traditional.jpg" loading="lazy" alt="Traditional night scene enhancement example">
+          <div class="example-caption">
+            <span class="l1">NIGHT SCENE</span>
+            <span class="l2">Traditional composition</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- HOW SKYORA WORKS -->
+  <section class="section-pad" id="method">
+    <div class="container">
+      <span class="eyebrow reveal">Method</span>
+      <h2 class="section-title reveal">A deterministic image-processing pipeline.</h2>
+      <p class="lede reveal">Every stage runs on fixed rules and astronomical calculation — no inference, no training data, no cloud round-trip.</p>
+      <div class="pipeline">
+        <div class="pipeline-stage"><span class="n mono">00</span><span class="label">Input Image</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">01</span><span class="label">Moon Detection</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">02</span><span class="label">Lunar Ephemeris</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">03</span><span class="label">Phase Matching</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">04</span><span class="label">Template Adaptation</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">05</span><span class="label">Natural Blending</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">06</span><span class="label">Denoising</span></div>
+        <div class="pipeline-connector">→</div>
+        <div class="pipeline-stage"><span class="n mono">07</span><span class="label">Enhanced Output</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATHEMATICAL FOUNDATION -->
+  <section class="section-pad" id="math">
+    <div class="container">
+      <span class="eyebrow reveal">Foundation</span>
+      <h2 class="section-title reveal">Mathematics behind the image.</h2>
+      <p class="lede reveal">Skyora does not rely on a machine-learning inference model. Candidate regions, lunar phase, and template selection are derived from closed-form calculations.</p>
+
+      <div class="equation-list">
+        <div class="equation-block reveal">
+          <h4>Circularity</h4>
+          <div>
+            <div class="equation-display">C<sub>i</sub> = A<sub>i</sub> / (π · r<sub>i</sub>²)</div>
+            <p>Used to evaluate how closely a detected contour resembles a circular lunar disc.</p>
+          </div>
+        </div>
+        <div class="equation-block reveal">
+          <h4>Candidate Score</h4>
+          <div>
+            <div class="equation-display">S<sub>i</sub> = C<sub>i</sub> · μ<sub>i</sub> · log(A<sub>i</sub> + 1)</div>
+            <p>Combines circularity, brightness, and contour area when ranking candidate lunar regions.</p>
+          </div>
+        </div>
+        <div class="equation-block reveal">
+          <h4>Lunar Age</h4>
+          <div>
+            <div class="equation-display">A = (t − t<sub>newmoon</sub>) mod 29.53</div>
+            <p>Determines the lunar age in days, used to select the phase-appropriate template.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- PAPER CARD -->
+  <section class="section-pad" id="paper">
+    <div class="container">
+      <div class="paper-card reveal">
+        <span class="eyebrow plain small-caps">Published Research</span>
+        <h3>A Mathematics-Based Astrophotography Image Enhancement Method for Low-End Devices and Embedded Camera Systems</h3>
+        <div class="paper-meta">
+          <span><strong>Hiruja Edurapola</strong></span>
+          <span>Zenodo</span>
+        </div>
+        <div class="paper-doi mono">DOI 10.5281/zenodo.18063740</div>
+        <div class="paper-actions">
+          <a class="btn btn-primary" href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Read the Full Paper ↗</a>
+          <a class="btn btn-outline" href="https://doi.org/10.5281/zenodo.18063740" target="_blank" rel="noopener">View DOI ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / CREDIT -->
+  <section class="section-pad" id="about">
+    <div class="container">
+      <span class="eyebrow reveal">Credit</span>
+      <h2 class="section-title reveal">Built by curiosity.</h2>
+      <div class="about-grid">
+        <div class="researcher-card reveal">
+          <h3>Hiruja Edurapola</h3>
+          <span class="role">Researcher · Developer · Astronomer</span>
+          <p>Hiruja Edurapola is an independent student researcher and software developer working at the intersection of astronomy, computational imaging, and software engineering. Skyora explores how mathematical and classical image-processing methods can make astrophotography more accessible on low-cost hardware.</p>
+        </div>
+        <div class="org-list reveal">
+          <div class="org-item">
+            <h4>Hiruja Studios</h4>
+            <p>Creative technology and development studio focused on software, experiments, games, digital experiences and technology projects.</p>
+          </div>
+          <div class="org-item">
+            <h4>SJ Research Labs</h4>
+            <p>Independent research initiative exploring science, technology, engineering and experimental projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="mark">SKYORA</div>
+        <p>A mathematics-based astrophotography image enhancement project.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Site</h5>
+          <a href="research.html">Research</a>
+          <a href="moon-fixer.html">Moon Fixer</a>
+          <a href="https://zenodo.org/records/18063740" target="_blank" rel="noopener">Paper</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="credit">Research &amp; Development by <strong><a href="https://hirujaedurapola.com" rel="noopener" target="_blank">Hiruja Edurapola</a></strong> — <a href="https://hirujastudios.netlify.app" target="_blank" rel="noopener">Hiruja Studios</a> · SJ Research Labs</div>
+      <div>© <span data-year>2026</span> Hiruja Edurapola</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
